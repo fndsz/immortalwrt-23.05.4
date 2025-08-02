@@ -4,7 +4,7 @@
 #include <dt-bindings/input/input.h>
 
 / {
-	compatible = "widora,neo-32m", "widora,neo", "mediatek,mt7628an-soc";
+	compatible = "widora,neo", "mediatek,mt7628an-soc";
 
 	aliases {
 		led-boot = &led_wifi;
