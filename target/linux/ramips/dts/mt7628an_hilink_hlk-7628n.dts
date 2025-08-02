@@ -7,7 +7,7 @@
 
 / {
 	compatible = "hilink,hlk-7628n", "mediatek,mt7628an-soc";
-	model = "HILINK HLK-7628N";
+	model = "MMDVM Ruter";
 
 	keys {
 		compatible = "gpio-keys";
@@ -31,7 +31,42 @@
 
 &state_default {
 	gpio {
-		groups = "i2c";
+		groups = "gpio";
+		function = "gpio";
+	};
+
+	perst {
+		groups = "perst";
+		function = "gpio";
+	};
+
+	refclk {
+		groups = "refclk";
+		function = "gpio";
+	};
+
+	i2s {
+		groups = "i2s";
+		function = "gpio";
+	};
+
+	spis {
+		groups = "spis";
+		function = "gpio";
+	};
+
+	wled_kn {
+		groups = "wled_kn";
+		function = "gpio";
+	};
+
+	wled_an {
+		groups = "wled_an";
+		function = "wled_an";
+	};
+
+	wdt {
+		groups = "wdt";
 		function = "gpio";
 	};
 };
@@ -44,14 +79,24 @@
 	status = "okay";
 };
 
+&uart2 {
+	status = "okay";
+};
+
+&pwm {
+	status = "okay";
+};
+
 &spi0 {
 	status = "okay";
 
-	flash@0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi_pins>, <&spi_cs1_pins>;
+
+	m25p80@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <10000000>;
-		broken-flash-reset;
+		spi-max-frequency = <40000000>;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -67,7 +112,6 @@
 			partition@30000 {
 				label = "u-boot-env";
 				reg = <0x30000 0x10000>;
-				read-only;
 			};
 
 			factory: partition@40000 {
@@ -82,6 +126,14 @@
 				reg = <0x50000 0x1fb0000>;
 			};
 		};
+	};
+
+	spidev@1 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "linux,spidev";
+		reg = <1>;
+		spi-max-frequency = <40000000>;
 	};
 };
 
