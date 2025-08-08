@@ -97,10 +97,6 @@
 	status = "okay";
 };
 
-&i2c {
-	status = "okay";
-};
-
 &pcie0 {
 	wifi@0,0 {
 		compatible = "mediatek,mt76";
