@@ -93,6 +93,10 @@
 	};
 };
 
+&i2c {
+	status = "okay";
+};
+
 &pcie {
 	status = "okay";
 };
