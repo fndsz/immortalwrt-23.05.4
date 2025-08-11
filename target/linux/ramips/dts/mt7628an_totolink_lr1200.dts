@@ -7,7 +7,7 @@
 
 / {
 	compatible = "totolink,lr1200", "mediatek,mt7628dan";
-	model = "Portable digital router by BI4PCS";
+	model = "4G MMDVM Router";
 
 	aliases {
 		led-boot = &led_status_Wifi;
@@ -91,6 +91,10 @@
 	status = "okay";
 	mediatek,cd-low;
 	
+};
+
+&i2c {
+	status = "okay";
 };
 
 &uart1 {
